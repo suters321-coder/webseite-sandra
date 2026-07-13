@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" fill="none">
+  <!-- Crescent moon -->
+  <path d="M150 40
+           C 100 40 62 78 62 130
+           C 62 182 100 220 150 220
+           C 112 208 86 172 86 130
+           C 86 88 112 52 150 40 Z"
+        fill="none" stroke="#D4A846" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Flower 1 (upper) -->
+  <g transform="translate(148,88)">
+    <path d="M0,-22 C8,-14 8,-6 0,0 C-8,-6 -8,-14 0,-22 Z" stroke="#D4A846" stroke-width="2.2" fill="none"/>
+    <path d="M20,-10 C14,-1 6,1 0,0 C1,-8 6,-15 20,-10 Z" stroke="#D4A846" stroke-width="2.2" fill="none"/>
+    <path d="M17,14 C8,12 2,7 0,0 C8,-2 16,2 17,14 Z" stroke="#D4A846" stroke-width="2.2" fill="none"/>
+    <path d="M-6,20 C-8,11 -6,4 0,0 C4,7 4,15 -6,20 Z" stroke="#D4A846" stroke-width="2.2" fill="none"/>
+    <path d="M-21,4 C-13,-2 -5,-2 0,0 C-3,8 -11,12 -21,4 Z" stroke="#D4A846" stroke-width="2.2" fill="none"/>
+    <circle cx="0" cy="0" r="3.2" fill="#D4A846"/>
+  </g>
+
+  <!-- Flower 2 (middle, larger) -->
+  <g transform="translate(138,138)">
+    <path d="M0,-27 C10,-17 10,-7 0,0 C-10,-7 -10,-17 0,-27 Z" stroke="#D4A846" stroke-width="2.4" fill="none"/>
+    <path d="M25,-12 C17,-1 7,1 0,0 C1,-10 8,-18 25,-12 Z" stroke="#D4A846" stroke-width="2.4" fill="none"/>
+    <path d="M21,17 C10,15 2,9 0,0 C10,-3 20,2 21,17 Z" stroke="#D4A846" stroke-width="2.4" fill="none"/>
+    <path d="M-8,25 C-10,13 -7,5 0,0 C5,9 5,18 -8,25 Z" stroke="#D4A846" stroke-width="2.4" fill="none"/>
+    <path d="M-26,5 C-16,-2 -6,-2 0,0 C-4,10 -14,15 -26,5 Z" stroke="#D4A846" stroke-width="2.4" fill="none"/>
+    <circle cx="0" cy="0" r="3.8" fill="#D4A846"/>
+  </g>
+
+  <!-- Flower 3 (lower) -->
+  <g transform="translate(120,182)">
+    <path d="M0,-20 C7,-13 7,-5 0,0 C-7,-5 -7,-13 0,-20 Z" stroke="#D4A846" stroke-width="2" fill="none"/>
+    <path d="M18,-9 C13,-1 5,1 0,0 C1,-7 6,-13 18,-9 Z" stroke="#D4A846" stroke-width="2" fill="none"/>
+    <path d="M15,13 C7,11 2,6 0,0 C7,-2 14,2 15,13 Z" stroke="#D4A846" stroke-width="2" fill="none"/>
+    <path d="M-5,18 C-7,10 -5,4 0,0 C4,6 4,13 -5,18 Z" stroke="#D4A846" stroke-width="2" fill="none"/>
+    <path d="M-19,4 C-12,-2 -4,-2 0,0 C-3,7 -10,11 -19,4 Z" stroke="#D4A846" stroke-width="2" fill="none"/>
+    <circle cx="0" cy="0" r="3" fill="#D4A846"/>
+  </g>
+
+  <!-- Floating stars, upper left -->
+  <path d="M40 66 L44 78 L56 82 L44 86 L40 98 L36 86 L24 82 L36 78 Z" fill="#D4A846"/>
+  <path d="M62 96 L64.5 103 L71 105 L64.5 107 L62 114 L59.5 107 L53 105 L59.5 103 Z" fill="#D4A846"/>
+  <circle cx="30" cy="104" r="2.2" fill="#D4A846"/>
+
+  <!-- Connecting thread from moon tip to stars -->
+  <path d="M150 40 C 110 46 70 64 44 84" stroke="#D4A846" stroke-width="1" fill="none" opacity="0.6"/>
+
+  <!-- Hanging thread left with star -->
+  <path d="M62 130 C 55 160 48 190 40 212" stroke="#D4A846" stroke-width="1" fill="none" opacity="0.7"/>
+  <path d="M40 208 L42.5 215 L49 217 L42.5 219 L40 226 L37.5 219 L31 217 L37.5 215 Z" fill="#D4A846"/>
+
+  <!-- Hanging thread right with star -->
+  <path d="M150 220 C 158 224 166 228 172 232" stroke="#D4A846" stroke-width="1" fill="none" opacity="0.7"/>
+  <path d="M172 228 L174.5 235 L181 237 L174.5 239 L172 246 L169.5 239 L163 237 L169.5 235 Z" fill="#D4A846"/>
+
+  <!-- Center pendant thread + bead + star -->
+  <path d="M108 202 C 106 214 106 226 110 236" stroke="#D4A846" stroke-width="1" fill="none" opacity="0.8"/>
+  <circle cx="109" cy="224" r="2.4" fill="#D4A846"/>
+  <path d="M110 240 L104 252 L110 248 L110 260 L112 248 L118 252 Z" fill="#D4A846"/>
+</svg>
