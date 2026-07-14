@@ -658,23 +658,6 @@ section {
   display: block;
 }
 
-.gallery-item .tag {
-  position: absolute;
-  bottom: 14px;
-  left: 14px;
-  background: rgba(12, 27, 61, 0.72);
-  color: var(--color-gold-highlight);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.74rem;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  font-family: 'Lato', sans-serif;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(212, 168, 70, 0.3);
-  z-index: 2;
-}
-
 .gallery-item[data-cat="zeichnungen"] .placeholder-art {
   background: linear-gradient(155deg, var(--color-skyblue), var(--color-ultramarine));
 }
