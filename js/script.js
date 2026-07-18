@@ -204,7 +204,7 @@ if (contactForm) {
         throw new Error(result.message || 'Unbekannter Fehler');
       }
     } catch (error) {
-      formNote.textContent = 'Ups, das hat leider nicht geklappt. Schreib mir gerne direkt an hallo@diamoon-art.ch.';
+      formNote.textContent = 'Ups, das hat leider nicht geklappt. Bitte versuch es in ein paar Minuten nochmal.';
       formNote.classList.add('visible', 'error');
     } finally {
       if (formSubmitBtn) {
