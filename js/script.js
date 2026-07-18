@@ -32,7 +32,8 @@ updateHeader();
 const revealSelectors = [
   '.section-header', '.card', '.gallery-item', '.intro-visual',
   '.intro-text', '.about-content', '.portrait', '.contact-info',
-  'form', '.coming-soon .icon', '.coming-soon h1', '.coming-soon p'
+  'form', '.coming-soon .icon', '.coming-soon h1', '.coming-soon p',
+  '.blog-card', '.post-image', '.post-content'
 ].join(', ');
 
 if ('IntersectionObserver' in window) {
@@ -47,7 +48,7 @@ if ('IntersectionObserver' in window) {
 
   document.querySelectorAll(revealSelectors).forEach(el => {
     // Leichter Versatz für Elemente, die nebeneinander stehen
-    const siblings = Array.from(el.parentElement.children).filter(s => s.matches('.card, .gallery-item'));
+    const siblings = Array.from(el.parentElement.children).filter(s => s.matches('.card, .gallery-item, .blog-card'));
     const index = siblings.indexOf(el);
     if (index > 0) {
       el.style.transitionDelay = `${(index % 6) * 70}ms`;
