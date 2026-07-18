@@ -1080,6 +1080,10 @@ input:focus, textarea:focus {
   display: block;
 }
 
+.form-note.error {
+  color: #B3261E;
+}
+
 /* ---------- Rechtliche Seiten (Impressum / Datenschutz) ---------- */
 
 .legal {

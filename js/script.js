@@ -172,14 +172,45 @@ if (galleryImages.length) {
   });
 }
 
-// Contact form (front-end only placeholder)
+// Kontaktformular: Versand über Web3Forms (api.web3forms.com)
 const contactForm = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
+const formSubmitBtn = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    formNote.classList.add('visible');
-    contactForm.reset();
+
+    if (formSubmitBtn) {
+      formSubmitBtn.disabled = true;
+      formSubmitBtn.textContent = 'Wird gesendet …';
+    }
+
+    formNote.classList.remove('visible', 'error');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        formNote.textContent = 'Danke für deine Nachricht! Ich melde mich bald bei dir zurück.';
+        formNote.classList.add('visible');
+        contactForm.reset();
+      } else {
+        throw new Error(result.message || 'Unbekannter Fehler');
+      }
+    } catch (error) {
+      formNote.textContent = 'Ups, das hat leider nicht geklappt. Schreib mir gerne direkt an hallo@diamoon-art.ch.';
+      formNote.classList.add('visible', 'error');
+    } finally {
+      if (formSubmitBtn) {
+        formSubmitBtn.disabled = false;
+        formSubmitBtn.textContent = 'Nachricht senden';
+      }
+    }
   });
 }
