@@ -1,6 +1,70 @@
 /* diamoon-art – Sandra | Grundstil */
 
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Lato:wght@300;400;700&display=swap');
+/* Schriften lokal eingebunden (kein Google-Request beim Seitenaufruf –
+   schont die Privatsphäre der Besucher:innen, siehe datenschutz.html) */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/eb-garamond-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/eb-garamond-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/eb-garamond-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/eb-garamond-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/eb-garamond-italic-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/eb-garamond-italic-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/lato-300.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/lato-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/lato-700.woff2') format('woff2');
+}
 
 :root {
   --color-navy: #14285A;
@@ -1014,6 +1078,57 @@ input:focus, textarea:focus {
 
 .form-note.visible {
   display: block;
+}
+
+/* ---------- Rechtliche Seiten (Impressum / Datenschutz) ---------- */
+
+.legal {
+  padding-top: 9rem;
+}
+
+.legal .container {
+  max-width: 800px;
+}
+
+.legal h2 {
+  font-size: 1.6rem;
+  margin-top: 2.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.legal h2:first-of-type {
+  margin-top: 0;
+}
+
+.legal p {
+  color: var(--color-mist);
+  margin-bottom: 1rem;
+}
+
+.legal a {
+  color: var(--color-gold-highlight);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal ul {
+  color: var(--color-mist);
+  margin: 0 0 1rem 1.3rem;
+}
+
+.legal li {
+  margin-bottom: 0.4rem;
+}
+
+.legal .placeholder-note {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 1rem 1.3rem;
+  background: rgba(212, 168, 70, 0.1);
+  border: 1px solid rgba(212, 168, 70, 0.35);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: var(--color-gold-highlight);
 }
 
 /* ---------- Blog placeholder ---------- */
