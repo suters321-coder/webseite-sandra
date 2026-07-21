@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
 <header class="site-header">
   <div class="header-inner">
@@ -34,13 +35,13 @@
         <li><a href="blog.html">Blog</a></li>
       </ul>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <section class="about-hero">
     <div class="container">
       <div class="section-header" style="margin-bottom: 4rem;">

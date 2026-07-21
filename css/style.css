@@ -1103,6 +1103,29 @@ textarea.input-invalid:focus {
   box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.18);
 }
 
+/* Skip-Link: für Tastatur-/Screenreader-Nutzer, sichtbar nur bei Fokus */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 3000;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-navy-deep);
+  color: var(--color-white);
+  border-radius: 0 0 var(--radius) 0;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* Galerie-Kacheln sind per Tastatur bedienbar → sichtbarer Fokusrahmen */
+.gallery-item:focus-visible {
+  outline: 2px solid var(--color-gold-highlight);
+  outline-offset: 3px;
+}
+
 /* ---------- Rechtliche Seiten (Impressum / Datenschutz) ---------- */
 
 .legal {

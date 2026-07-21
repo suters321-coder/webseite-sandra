@@ -26,4 +26,27 @@ No install step and no `package.json` — this is dependency-free.
 
 - All user-facing text and `<html lang="de">` are German; keep new content consistent with that.
 - Site branding is "diamoon-art" (domain `diamoon-art.ch`) — the older "Soulpaint" name in `Soulpaint.docx`/`extracted_text.txt` is historical and should not be reintroduced.
-- No test suite, linter, or CI configuration exists; verification is manual (open in browser / use the dev server).
+- No test suite, linter, or CI configuration exists; verification is manual (open in browser / use the dev server). Note: Node.js is **not installed** on this machine, so `scripts/serve.js` can't run and `node --check` isn't available — verify by opening files in a browser instead.
+
+## Deployment & Betrieb (Stand Juli 2026)
+
+- **Hosting:** GitHub Pages aus Repo `suters321-coder/webseite-sandra` (öffentlich), Branch `main`, Ordner `/root`. Jeder Push auf `main` deployt automatisch neu.
+- **Domain:** `www.diamoon-art.ch` (Datei `CNAME`), HTTPS-Zertifikat aktiv, "Enforce HTTPS" an. DNS liegt bei **hosttech** (Nameserver ns1/2/3.hosttech.ch): Apex → 4 GitHub-A-Records (185.199.108–111.153), `www` → CNAME `suters321-coder.github.io`. E-Mail läuft über hosttech-MX (`mail1/mail2.hosttech.eu`) — bei DNS-Änderungen **nie** die MX-/TXT(SPF/DMARC)-Records anfassen. Ein Wildcard `*.diamoon-art.ch` zeigt noch auf hosttech (harmlos).
+- **Sicherheit:** Strikte CSP + Referrer-Policy als `<meta>` auf allen Seiten; Formular-Härtung in `js/script.js`; Web3Forms-Spamschutz auf "Strict". Fonts sind lokal (`fonts/*.woff2`), einzige externe Verbindung ist `api.web3forms.com`.
+- **Barrierefreiheit:** Alt-Texte, Skip-Link, `aria-expanded` am Menü, Lightbox mit Fokus-Falle + Tastaturbedienung, `aria-pressed` an Galerie-Filtern, Formular-Fehler per ARIA. Nicht maschinell verifiziert: Farbkontraste (WCAG) und echter Screenreader-Test.
+
+### Bewusste Entscheidung: KEIN Cloudflare (vorerst)
+
+X-Frame-Options / X-Content-Type-Options / frame-ancestors brauchen echte HTTP-Header, die GitHub Pages nicht setzen kann — dafür bräuchte es Cloudflare (o. Ä.) davor. **Bewusst nicht gemacht**, weil: Cloudflare erfordert Konto + Nameserver-Umzug weg von hosttech + fehleranfälliges Übertragen aller DNS-/MX-Records (Risiko E-Mail-Ausfall). Für eine Portfolio-Seite ohne Logins/Zahlungen ist der Nutzen (v. a. Clickjacking-Schutz) minimal. **Erst angehen, wenn die Seite wächst** (z. B. Shop mit Zahlungen).
+
+## Offene To-dos / mögliche nächste Schritte
+
+Diese Punkte stehen noch offen — bei Gelegenheit ansprechen/erinnern:
+
+- [ ] **Google Search Console** einrichten (Sitemap `sitemap.xml` einreichen) für schnellere Indexierung — braucht Google-Konto + Domain-Verifizierung.
+- [ ] **hCaptcha** im Kontaktformular (gratis) als zusätzlicher Spamschutz — braucht Konto auf hCaptcha.com + Site-Key + Widget-Code in `kontakt.html`.
+- [ ] **Farbkontrast-Prüfung** (WCAG AA) mit einem Kontrast-Tool + Screenreader-Test für "vollständige" Barrierefreiheit.
+- [ ] **Social-Media-Links** in `kontakt.html` sind noch Platzhalter (`href="#"`) — echte Instagram/Facebook/Pinterest-URLs eintragen.
+- [ ] **Objekte-Kategorie** in der Galerie ist noch leer ("in Kürze") — Werke ergänzen, sobald vorhanden.
+- [ ] **Cloudflare** (siehe oben) — nur falls die Seite mal wächst.
+- [ ] Chrome "Sicheres DNS" auf dem Kundinnen-Laptop war nur zum Testen des Router-Caches — kann bei Übergabe zurückgestellt werden (optional).

@@ -3,16 +3,19 @@ const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
 if (navToggle && navLinks) {
+  const setNavState = (open) => {
+    navLinks.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+  };
+
   navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    navToggle.classList.toggle('open');
+    setNavState(!navLinks.classList.contains('open'));
   });
 
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.classList.remove('open');
-    });
+    link.addEventListener('click', () => setNavState(false));
   });
 }
 
@@ -66,8 +69,12 @@ const galleryEmpty = document.getElementById('galleryEmpty');
 if (filterButtons.length) {
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
+      filterButtons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
 
       const filter = btn.dataset.filter;
       let visibleCount = 0;
@@ -91,6 +98,7 @@ if (galleryImages.length) {
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
   lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
   lightbox.setAttribute('aria-label', 'Bildansicht');
   lightbox.innerHTML = `
     <button class="lightbox-close" aria-label="Schliessen">&times;</button>
@@ -111,6 +119,7 @@ if (galleryImages.length) {
 
   let currentList = [];
   let currentIndex = 0;
+  let lastFocused = null;
 
   function visibleImages() {
     return galleryImages.filter(img => {
@@ -131,6 +140,7 @@ if (galleryImages.length) {
   }
 
   function openLightbox(img) {
+    lastFocused = document.activeElement;
     currentList = visibleImages();
     currentIndex = Math.max(0, currentList.indexOf(img));
     renderLightbox();
@@ -142,6 +152,7 @@ if (galleryImages.length) {
   function closeLightbox() {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   }
 
   function stepLightbox(direction) {
@@ -153,7 +164,16 @@ if (galleryImages.length) {
   galleryImages.forEach(img => {
     const item = img.closest('.gallery-item');
     if (item) {
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', (img.alt || 'Werk') + ' – vergrössern');
       item.addEventListener('click', () => openLightbox(img));
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(img);
+        }
+      });
     }
   });
 
@@ -170,6 +190,20 @@ if (galleryImages.length) {
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') stepLightbox(-1);
     if (e.key === 'ArrowRight') stepLightbox(1);
+    if (e.key === 'Tab') {
+      // Fokus-Falle: Tab bleibt innerhalb des Dialogs
+      const focusable = [btnPrev, btnNext, btnClose].filter(b => b && b.style.display !== 'none');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      } else if (!focusable.includes(document.activeElement)) {
+        e.preventDefault(); first.focus();
+      }
+    }
   });
 }
 
