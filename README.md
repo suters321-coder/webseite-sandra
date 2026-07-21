@@ -45,7 +45,23 @@ scripts/serve.js       Abhängigkeitsfreier lokaler Dev-Server (Node.js)
 images/              Bilder der Werke (gemaelde-*.jpeg, zeichnung-*.jpeg), Logo, Portrait
 images/design/        Zusätzliche Design-/Referenzbilder
 images/unused/        Nicht verwendete Bilder (von Git ignoriert)
-robots.txt            Sperrt aktuell die gesamte Seite für Suchmaschinen
+robots.txt            Steuert die Suchmaschinen-Indexierung
 Soulpaint.docx         Früheres Konzeptdokument (Arbeitstitel „Soulpaint") – nicht verändern
 extracted_text.txt     Extrahierter Text aus Soulpaint.docx, von Git ignoriert – nicht verändern
 ```
+
+## Lizenz
+
+Dieses Repository steht unter einer **dualen Lizenz**:
+
+- **Quellcode** (HTML, CSS, JavaScript, Skripte): [MIT-Lizenz](LICENSE) – frei
+  nutzbar, veränderbar und weitergebbar unter Nennung des Copyright-Hinweises.
+- **Bilder, Kunstwerke und Texte** (u. a. alles im Ordner `images/` sowie die
+  redaktionellen Inhalte): urheberrechtlich geschützt, siehe
+  [IMAGES-LICENSE](IMAGES-LICENSE).
+
+  > © 2026 Sandra Suter (diamoon-art), alle Bilder und Texte sind
+  > urheberrechtlich geschützt, Nutzung nur mit ausdrücklicher Erlaubnis.
+
+Kurz: Den Code darfst du gerne als Vorlage verwenden, die Kunstwerke und Texte
+von Sandra jedoch nicht ohne schriftliche Zustimmung.
