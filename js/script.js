@@ -173,21 +173,91 @@ if (galleryImages.length) {
   });
 }
 
-// Kontaktformular: Versand über Web3Forms (api.web3forms.com)
+// Kontaktformular: Client-Validierung + Versand über Web3Forms (api.web3forms.com)
 const contactForm = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
 const formSubmitBtn = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
-if (contactForm) {
+if (contactForm && formNote) {
+  // JS aktiv → eigene, konsistente Fehlermeldungen statt Browser-Standardbubbles.
+  // Die HTML-Attribute (required, maxlength …) bleiben als Fallback ohne JS erhalten.
+  contactForm.setAttribute('novalidate', 'novalidate');
+
+  const fields = {
+    name: {
+      el: contactForm.querySelector('#name'),
+      err: contactForm.querySelector('#name-error'),
+      validate: (v) => {
+        if (!v) return 'Bitte gib deinen Namen ein.';
+        if (v.length < 2) return 'Der Name ist zu kurz.';
+        if (v.length > 100) return 'Der Name ist zu lang (max. 100 Zeichen).';
+        return '';
+      }
+    },
+    email: {
+      el: contactForm.querySelector('#email'),
+      err: contactForm.querySelector('#email-error'),
+      validate: (v) => {
+        if (!v) return 'Bitte gib deine E-Mail-Adresse ein.';
+        if (v.length > 150) return 'Die E-Mail-Adresse ist zu lang.';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Bitte gib eine gültige E-Mail-Adresse ein.';
+        return '';
+      }
+    },
+    message: {
+      el: contactForm.querySelector('#message'),
+      err: contactForm.querySelector('#message-error'),
+      validate: (v) => {
+        if (!v) return 'Bitte schreib eine kurze Nachricht.';
+        if (v.length < 5) return 'Deine Nachricht ist zu kurz.';
+        if (v.length > 2000) return 'Deine Nachricht ist zu lang (max. 2000 Zeichen).';
+        return '';
+      }
+    }
+  };
+
+  const setFieldError = (field, msg) => {
+    if (field.err) field.err.textContent = msg;
+    if (field.el) {
+      field.el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      field.el.classList.toggle('input-invalid', !!msg);
+    }
+  };
+
+  const validateField = (field) => {
+    const value = field.el ? field.el.value.trim() : '';
+    const msg = field.validate(value);
+    setFieldError(field, msg);
+    return !msg;
+  };
+
+  // Live-Feedback: Fehler prüfen beim Verlassen des Feldes bzw. beim Korrigieren.
+  Object.values(fields).forEach((field) => {
+    if (!field.el) return;
+    field.el.addEventListener('blur', () => validateField(field));
+    field.el.addEventListener('input', () => {
+      if (field.el.getAttribute('aria-invalid') === 'true') validateField(field);
+    });
+  });
+
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    formNote.classList.remove('visible', 'error');
+
+    // Alle Felder prüfen; bei Fehlern ersten fokussieren und abbrechen.
+    let firstInvalid = null;
+    Object.values(fields).forEach((field) => {
+      if (!validateField(field) && !firstInvalid) firstInvalid = field.el;
+    });
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
 
     if (formSubmitBtn) {
       formSubmitBtn.disabled = true;
       formSubmitBtn.textContent = 'Wird gesendet …';
     }
-
-    formNote.classList.remove('visible', 'error');
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -195,17 +265,20 @@ if (contactForm) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
       });
-      const result = await response.json();
 
-      if (result.success) {
+      let result = {};
+      try { result = await response.json(); } catch (_) { /* keine/ungültige JSON-Antwort */ }
+
+      if (response.ok && result.success) {
         formNote.textContent = 'Danke für deine Nachricht! Ich melde mich bald bei dir zurück.';
         formNote.classList.add('visible');
         contactForm.reset();
+        Object.values(fields).forEach((field) => setFieldError(field, ''));
       } else {
-        throw new Error(result.message || 'Unbekannter Fehler');
+        throw new Error(result.message || ('HTTP ' + response.status));
       }
     } catch (error) {
-      formNote.textContent = 'Ups, das hat leider nicht geklappt. Bitte versuch es in ein paar Minuten nochmal.';
+      formNote.textContent = 'Ups, das hat leider nicht geklappt. Bitte versuch es in ein paar Minuten nochmal oder schreib mir direkt eine E-Mail.';
       formNote.classList.add('visible', 'error');
     } finally {
       if (formSubmitBtn) {

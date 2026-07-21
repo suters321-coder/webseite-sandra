@@ -1084,6 +1084,25 @@ input:focus, textarea:focus {
   color: #B3261E;
 }
 
+.field-error {
+  display: block;
+  min-height: 1em;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: #B3261E;
+}
+
+input.input-invalid,
+textarea.input-invalid {
+  border-color: #B3261E;
+}
+
+input.input-invalid:focus,
+textarea.input-invalid:focus {
+  border-color: #B3261E;
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.18);
+}
+
 /* ---------- Rechtliche Seiten (Impressum / Datenschutz) ---------- */
 
 .legal {
