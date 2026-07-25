@@ -1,0 +1,15 @@
+Ordner "neue-bilder"
+====================
+
+Hier legst du neue Bilder ab, die noch auf die Website (in die Galerie) sollen.
+
+So geht's:
+1. Zieh dein Bild in diesen Ordner (oder kopiere es hierher).
+2. Sag dem Assistenten: "Bitte fuege das Bild aus dem Ordner neue-bilder in die Galerie ein."
+   Sag ihm auch, ob es ein Gemaelde oder eine Zeichnung ist und was darauf zu sehen ist.
+3. Der Assistent fuegt das Bild in die Galerie ein, stellt es online und raeumt es
+   danach hier wieder weg.
+
+So zeigt dieser Ordner immer nur die Bilder, die noch offen sind.
+
+(Die Datei LIESMICH.txt bitte liegen lassen - sie sorgt dafuer, dass der Ordner bestehen bleibt.)

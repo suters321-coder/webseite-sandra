@@ -3,3 +3,8 @@ extracted_text.txt
 
 # Interne Anleitung (nicht auf der oeffentlichen Website veroeffentlichen)
 Anleitung-Website-pflegen.docx
+
+# Ablage-Ordner fuer neue Bilder: Inhalt nicht veroeffentlichen,
+# nur die Erklaerdatei behalten (damit der Ordner bestehen bleibt)
+neue-bilder/*
+!neue-bilder/LIESMICH.txt
