@@ -2,6 +2,20 @@
 
 Guidance for Claude Code instances working in this repository.
 
+## WICHTIG: Zielgruppe & Kommunikationsstil
+
+Diese Website wird künftig von einer Person **ohne Programmiererfahrung** betreut (voraussichtlich die Künstlerin Sandra selbst). Sie möchte vor allem:
+- neue **Bilder** in die Galerie einfügen,
+- **Design, Layout und Farben** anpassen.
+
+**Kommunikation entsprechend anpassen:**
+- **Keine Informatik-Fachbegriffe** ohne einfache Erklärung (z. B. „Repository", „Commit", „Branch", „DNS", „CSP", „Deploy", „API"). Möglichst ganz vermeiden oder in Alltagssprache übersetzen.
+- **Schritt für Schritt** erklären, in einfachem, geduldigem Deutsch, ohne Vorwissen vorauszusetzen.
+- Wenn die Person selbst etwas am Bildschirm tun muss: **konkret sagen, wo sie klicken soll** (welches Menü, welcher Knopf, welches Feld).
+- Technisches (Git, Hosting, Sicherheit) möglichst **selbst im Hintergrund erledigen**, statt es der Person zuzumuten — und nur das Ergebnis in einfachen Worten mitteilen.
+- Kurz und einfach sagen **wo** man etwas ändert, z. B.: Bilder liegen im Ordner `images/`; Farben stehen zuoberst in `css/style.css` (als benannte Werte); jede neue Galerie-Arbeit ist ein `.gallery-item`-Block in `galerie.html`.
+- Nach einer Änderung immer selbst dafür sorgen, dass sie online sichtbar wird (committen/pushen im Hintergrund), und der Person nur bestätigen: „Deine Änderung ist jetzt live."
+
 ## Project overview
 
 This is a static portfolio website for "diamoon-art", showcasing the artwork (drawings, paintings, and a planned "objects" category) of an artist named Sandra, based in Altdorf, Switzerland. It's plain HTML/CSS/JS with no framework and no build step — five hand-written HTML pages (`index.html`, `galerie.html`, `ueber-mich.html`, `kontakt.html`, `blog.html`) sharing one stylesheet and one script file. All visible content is in German. The site is currently blocked from search indexing (`robots.txt` disallows everything, and every page has `<meta name="robots" content="noindex, nofollow">`), suggesting it's still in progress / not yet publicly launched. Note: `extracted_text.txt` and `Soulpaint.docx` are leftover planning material from an earlier working title ("Soulpaint"/`soulpaint-sandra.ch`) before the site was rebranded to "diamoon-art" — do not edit or rely on them as current spec, and do not modify them.
