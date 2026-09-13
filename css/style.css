@@ -706,6 +706,12 @@ section {
   height: auto;
 }
 
+/* Galerie bleibt unsichtbar, bis alle Vorschaubilder fertig geladen sind
+   (verhindert, dass Bilder einzeln nacheinander "aufpoppen") */
+.gallery-masonry.gallery-loading {
+  visibility: hidden;
+}
+
 .gallery-empty {
   display: none;
   text-align: center;

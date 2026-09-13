@@ -119,6 +119,35 @@ if (filterButtons.length) {
   });
 }
 
+// Galerie-Seite: Grid erst zeigen, wenn alle Vorschaubilder fertig geladen sind
+// (verhindert, dass Bilder beim Aufrufen der Seite einzeln nacheinander "aufpoppen")
+const galleryGrid = document.getElementById('galleryGrid');
+
+if (galleryGrid && galleryGrid.classList.contains('gallery-loading')) {
+  const gridImages = Array.from(galleryGrid.querySelectorAll('img'));
+  const revealGrid = () => galleryGrid.classList.remove('gallery-loading');
+
+  if (!gridImages.length) {
+    revealGrid();
+  } else {
+    let remaining = gridImages.length;
+    const onSettled = () => {
+      remaining -= 1;
+      if (remaining <= 0) revealGrid();
+    };
+    gridImages.forEach(img => {
+      if (img.complete) {
+        onSettled();
+      } else {
+        img.addEventListener('load', onSettled, { once: true });
+        img.addEventListener('error', onSettled, { once: true });
+      }
+    });
+    // Sicherheitsnetz: bei sehr langsamer Verbindung spaetestens nach 3s zeigen
+    setTimeout(revealGrid, 3000);
+  }
+}
+
 // Lightbox: Werke in Grossansicht
 const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
 
@@ -159,7 +188,7 @@ if (galleryImages.length) {
   function renderLightbox() {
     const img = currentList[currentIndex];
     if (!img) return;
-    lbImage.src = img.src;
+    lbImage.src = img.dataset.full || img.src;
     lbImage.alt = img.alt;
     lbCaption.textContent = img.alt || '';
     const multiple = currentList.length > 1;
