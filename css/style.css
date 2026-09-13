@@ -647,7 +647,9 @@ section {
 }
 
 .gallery-masonry .gallery-item {
-  background: var(--glass);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .item-caption {
