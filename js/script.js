@@ -174,15 +174,6 @@ if (galleryImages.length) {
           openLightbox(img);
         }
       });
-
-      // Titel direkt unter dem Bild anzeigen (auf der Galerie-Seite),
-      // automatisch aus dem Alt-Text des Bildes - keine zusaetzliche Pflege noetig.
-      if (img.alt && item.closest('.gallery-masonry') && !item.querySelector('.item-caption')) {
-        const caption = document.createElement('p');
-        caption.className = 'item-caption';
-        caption.textContent = img.alt;
-        item.appendChild(caption);
-      }
     }
   });
 
