@@ -374,7 +374,7 @@ img {
 
 .hero-logo-deco {
   position: absolute;
-  top: 10%;
+  bottom: 8%;
   right: 8%;
   width: clamp(200px, 20vw, 380px);
   height: auto;
