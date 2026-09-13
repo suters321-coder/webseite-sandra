@@ -373,21 +373,13 @@ img {
 }
 
 .hero-logo-deco {
-  position: absolute;
-  bottom: 8%;
-  right: 8%;
-  width: clamp(200px, 20vw, 380px);
+  display: block;
+  margin: 2.4rem 0 0 auto;
+  width: clamp(70px, 7vw, 110px);
   height: auto;
   opacity: 0.85;
-  filter: drop-shadow(0 0 50px rgba(212, 168, 70, 0.3));
+  filter: drop-shadow(0 0 20px rgba(212, 168, 70, 0.25));
   pointer-events: none;
-  z-index: 1;
-}
-
-@media (max-width: 900px) {
-  .hero-logo-deco {
-    display: none;
-  }
 }
 
 .hero-eyebrow {
