@@ -373,8 +373,7 @@ img {
 }
 
 .hero-logo-deco {
-  display: block;
-  margin: 0.4rem 0 0.8rem 0;
+  position: absolute;
   width: clamp(130px, 12vw, 220px);
   height: auto;
   opacity: 0.9;

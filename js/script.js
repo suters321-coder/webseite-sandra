@@ -25,13 +25,18 @@ const heroEm = document.querySelector('.hero h1 em');
 
 if (heroLogo && heroEm) {
   const centerHeroLogo = () => {
-    heroLogo.style.marginLeft = '0px';
+    const heroH1 = heroEm.closest('h1');
+    const parentRect = heroLogo.offsetParent.getBoundingClientRect();
     const emRect = heroEm.getBoundingClientRect();
-    const logoRect = heroLogo.getBoundingClientRect();
-    const parentRect = heroLogo.parentElement.getBoundingClientRect();
-    let desiredLeft = emRect.left + emRect.width / 2 - logoRect.width / 2;
-    desiredLeft = Math.max(parentRect.left, Math.min(desiredLeft, parentRect.right - logoRect.width));
-    heroLogo.style.marginLeft = (desiredLeft - logoRect.left) + 'px';
+    const h1Rect = heroH1.getBoundingClientRect();
+    const logoWidth = heroLogo.offsetWidth;
+
+    let left = emRect.left + emRect.width / 2 - logoWidth / 2 - parentRect.left;
+    left = Math.max(0, Math.min(left, parentRect.width - logoWidth));
+    const top = h1Rect.bottom - parentRect.top + 14;
+
+    heroLogo.style.left = left + 'px';
+    heroLogo.style.top = top + 'px';
   };
 
   centerHeroLogo();
