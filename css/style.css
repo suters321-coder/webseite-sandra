@@ -381,6 +381,12 @@ img {
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .hero-logo-deco {
+    display: none;
+  }
+}
+
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
