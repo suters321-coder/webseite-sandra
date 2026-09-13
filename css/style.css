@@ -372,6 +372,24 @@ img {
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
 }
 
+.hero-logo-deco {
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  width: clamp(200px, 20vw, 380px);
+  height: auto;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 50px rgba(212, 168, 70, 0.3));
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .hero-logo-deco {
+    display: none;
+  }
+}
+
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
