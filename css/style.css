@@ -663,25 +663,10 @@ section {
   color: var(--color-mist);
 }
 
-.gallery-item::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(8, 16, 38, 0.55), transparent 45%);
-  opacity: 0;
-  transition: opacity 0.35s var(--ease);
-  pointer-events: none;
-  z-index: 1;
-}
-
 .gallery-item:hover {
   transform: translateY(-6px);
   border-color: rgba(212, 168, 70, 0.55);
   box-shadow: var(--shadow-lift);
-}
-
-.gallery-item:hover::after {
-  opacity: 1;
 }
 
 .gallery-item .placeholder-art {
