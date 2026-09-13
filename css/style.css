@@ -647,7 +647,7 @@ section {
 }
 
 .gallery-masonry .gallery-item {
-  background: #FBF8F1;
+  background: var(--color-navy-deep);
 }
 
 .item-caption {
@@ -658,9 +658,9 @@ section {
   border-top: 1px solid rgba(212, 168, 70, 0.3);
   font-family: 'Lato', sans-serif;
   font-size: 0.82rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.4;
-  color: var(--color-ink);
+  color: var(--color-mist);
 }
 
 .gallery-item::after {
