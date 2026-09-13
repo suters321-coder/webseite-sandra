@@ -19,6 +19,29 @@ if (navToggle && navLinks) {
   });
 }
 
+// Startseite: Mond-Logo exakt unter dem Wort "diamoon-art" in der Ueberschrift zentrieren
+const heroLogo = document.querySelector('.hero-logo-deco');
+const heroEm = document.querySelector('.hero h1 em');
+
+if (heroLogo && heroEm) {
+  const centerHeroLogo = () => {
+    heroLogo.style.marginLeft = '0px';
+    const emRect = heroEm.getBoundingClientRect();
+    const logoRect = heroLogo.getBoundingClientRect();
+    const parentRect = heroLogo.parentElement.getBoundingClientRect();
+    let desiredLeft = emRect.left + emRect.width / 2 - logoRect.width / 2;
+    desiredLeft = Math.max(parentRect.left, Math.min(desiredLeft, parentRect.right - logoRect.width));
+    heroLogo.style.marginLeft = (desiredLeft - logoRect.left) + 'px';
+  };
+
+  centerHeroLogo();
+  window.addEventListener('resize', centerHeroLogo);
+  window.addEventListener('load', centerHeroLogo);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(centerHeroLogo);
+  }
+}
+
 // Header state on scroll
 const header = document.querySelector('.site-header');
 
