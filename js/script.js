@@ -33,7 +33,7 @@ updateHeader();
 
 // Scroll-reveal animations
 const revealSelectors = [
-  '.section-header', '.card', '.gallery-item', '.intro-visual',
+  '.section-header', '.card', '.intro-visual',
   '.intro-text', '.about-content', '.portrait', '.contact-info',
   'form', '.coming-soon .icon', '.coming-soon h1', '.coming-soon p',
   '.blog-card', '.post-image', '.post-content'
